@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FuelTrack Pro — Kurunegala Division</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="hdr">
+  <div class="hdr-glow"></div>
+  <div class="hdr-shine"></div>
+  <div class="hdr-inner">
+    <div class="hdr-brand">
+      <div class="logo-wrap">
+        <div class="logo-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M3 20V9a2 2 0 012-2h1.5L9 4h6l2.5 3H19a2 2 0 012 2v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="white" stroke-width="1.6" stroke-linejoin="round"/>
+            <circle cx="8.5" cy="14" r="2" fill="white" opacity=".9"/>
+            <circle cx="15.5" cy="14" r="2" fill="white" opacity=".9"/>
+            <path d="M8.5 9.5h7" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="logo-ring"></div>
+        <div class="logo-ring2"></div>
+      </div>
+      <div class="brand-txt">
+        <div class="brand-name">FuelTrack <span class="brand-pro">Pro</span></div>
+        <div class="brand-sub">Kurunegala Division · Fuel Reimbursement & Invoice Tracker</div>
+      </div>
+    </div>
+    <div class="hdr-stats" id="hdrStats"></div>
+    <div class="hdr-pill" id="hdrPill"></div>
+  </div>
+</header>
+
+<div class="shell">
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sb">
+    <nav class="nav">
+      <a class="ni active" data-p="dash" onclick="go('dash')">
+        <span class="ni-ic"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="6.5" height="6.5" rx="1.5" fill="currentColor"/><rect x="8.5" y="1" width="6.5" height="6.5" rx="1.5" fill="currentColor" opacity=".35"/><rect x="1" y="8.5" width="6.5" height="6.5" rx="1.5" fill="currentColor" opacity=".35"/><rect x="8.5" y="8.5" width="6.5" height="6.5" rx="1.5" fill="currentColor"/></svg></span>
+        Dashboard
+      </a>
+      <a class="ni" data-p="rec" onclick="go('rec')">
+        <span class="ni-ic"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="2" y="1.5" width="12" height="13" rx="1.8" stroke="currentColor" stroke-width="1.4"/><line x1="5" y1="5.5" x2="11" y2="5.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="5" y1="8" x2="11" y2="8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="5" y1="10.5" x2="8.5" y2="10.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></span>
+        All Records
+      </a>
+      <a class="ni" data-p="add" onclick="go('add')">
+        <span class="ni-ic"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/><line x1="8" y1="5" x2="8" y2="11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><line x1="5" y1="8" x2="11" y2="8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+        Add Record
+      </a>
+      <a class="ni" data-p="invupdate" onclick="go('invupdate')">
+        <span class="ni-ic"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M5 8h6M8 5v6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="12" cy="4" r="2.5" fill="currentColor" opacity=".5"/></svg></span>
+        Update Invoice
+        <span class="ni-badge" id="pendBadge">0</span>
+      </a>
+      <div class="ndiv"></div>
+      <a class="ni" data-p="per" onclick="go('per')">
+        <span class="ni-ic"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5.5" r="2.8" stroke="currentColor" stroke-width="1.4"/><path d="M2 14c0-3 2.7-4.8 6-4.8s6 1.8 6 4.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+        Persons
+      </a>
+      <a class="ni" data-p="veh" onclick="go('veh')">
+        <span class="ni-ic"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M2 9.5l2.2-4.5h7.6L14 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><rect x="1.5" y="9.5" width="13" height="3.5" rx="1.5" stroke="currentColor" stroke-width="1.4"/><circle cx="4.5" cy="13.5" r="1.3" fill="currentColor"/><circle cx="11.5" cy="13.5" r="1.3" fill="currentColor"/></svg></span>
+        Vehicles
+      </a>
+    </nav>
+    <div class="sb-foot">
+      <button class="rst-btn" onclick="confirmReset()">
+        <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M1 6a5 5 0 105-5H4M4 1.5L2 3.5l2 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Reset All Data
+      </button>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <!-- ═══ DASHBOARD ═══ -->
+    <div class="pg active" id="pg-dash">
+      <div class="phdr">
+        <div><h2>Dashboard</h2><p>Fuel reimbursement & tax invoice tracker</p></div>
+        <div class="fstrip">
+          <div class="fw"><span class="fic">📅</span><select id="dMon" class="fsel" onchange="renderDash()"><option value="">All Months</option></select></div>
+          <div class="fw"><span class="fic">👤</span><select id="dPer" class="fsel" onchange="renderDash()"><option value="">All Persons</option></select></div>
+          <div class="fw"><span class="fic">📍</span><select id="dSite" class="fsel" onchange="renderDash()"><option value="">All Sites</option></select></div>
+        </div>
+      </div>
+      <div class="krow" id="krow"></div>
+      <div class="vcard" id="vcard"></div>
+      <div class="two-col mt14">
+        <div class="card">
+          <div class="card-hdr"><div class="chl"><span class="cdot cdot-am pulse"></span><span class="cttl">⏳ Pending — No Invoice</span></div><span class="badge b-am" id="nPend">0</span></div>
+          <div class="slist" id="listPend"></div>
+        </div>
+        <div class="card">
+          <div class="card-hdr"><div class="chl"><span class="cdot cdot-or pulse"></span><span class="cttl">⚠ Partial — Balance Due</span></div><span class="badge b-or" id="nPart">0</span></div>
+          <div class="slist" id="listPart"></div>
+        </div>
+      </div>
+      <div class="card mt14">
+        <div class="card-hdr">
+          <div class="chl"><span class="cdot cdot-bl pulse"></span><span class="cttl">Full Summary Table</span></div>
+          <button class="btn-sm" onclick="exportCSV()"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5l3 3 3-3M2 10h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Export CSV</button>
+        </div>
+        <div class="twrap">
+          <table><thead><tr>
+            <th>Name</th><th>Code</th><th>Site</th><th>Month</th>
+            <th>Invoice(s)</th><th>Invoice Date</th><th>Reimp.</th>
+            <th>VAT Bill</th><th>W/O VAT</th><th>Tax Inv.</th><th>VAT</th><th>Total</th>
+            <th>Balance</th><th>Status</th>
+          </tr></thead><tbody id="dashTb"></tbody><tfoot id="dashFt"></tfoot></table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ ALL RECORDS ═══ -->
+    <div class="pg" id="pg-rec">
+      <div class="phdr">
+        <div class="phdr-l">
+          <button class="bbtn" onclick="go('dash')"><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
+          <div><h2>All Records</h2><p>Filter, view & manage entries</p></div>
+        </div>
+        <button class="btn-pri" onclick="go('add')">+ Add New</button>
+      </div>
+      <div class="fbar">
+        <div class="swrap"><svg class="sic" width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.3"/><line x1="9.5" y1="9.5" x2="12.5" y2="12.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><input id="rSrch" class="sinp" placeholder="Search name, code, site, invoice..." oninput="renderRec()"></div>
+        <div class="fw"><span class="fic">📅</span><select id="rMon" class="fsel" onchange="renderRec()"><option value="">All Months</option></select></div>
+        <div class="fw"><span class="fic">🔖</span>
+          <select id="rStat" class="fsel" onchange="renderRec()">
+            <option value="">All Status</option>
+            <option value="pending">⏳ Pending</option>
+            <option value="partial">⚠ Partial</option>
+            <option value="received">✓ Received</option>
+          </select>
+        </div>
+        <div class="fw"><span class="fic">👤</span><select id="rPer" class="fsel" onchange="renderRec()"><option value="">All Persons</option></select></div>
+        <div class="fw"><span class="fic">📍</span><select id="rSite" class="fsel" onchange="renderRec()"><option value="">All Sites</option></select></div>
+      </div>
+      <div id="balNotice" class="bal-notice" style="display:none;"></div>
+      <div class="card">
+        <div class="twrap">
+          <table><thead><tr>
+            <th>Name</th><th>Code</th><th>Site</th><th>Vehicle</th><th>Month</th>
+            <th>Reimp.</th><th>VAT Bill</th><th>Tax Inv.</th><th>VAT</th><th>Total</th>
+            <th>Balance</th><th>Invoice(s)</th><th>Status</th><th>Actions</th>
+          </tr></thead><tbody id="recTb"></tbody></table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ ADD RECORD ═══ -->
+    <div class="pg" id="pg-add">
+      <div class="phdr">
+        <div class="phdr-l">
+          <button class="bbtn" onclick="go('rec')"><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
+          <div><h2>Add New Record</h2><p>Enter reimbursement details</p></div>
+        </div>
+      </div>
+      <div class="fgrid">
+        <div class="card fcard">
+          <div class="fsec">👤 Person & Period</div>
+          <div class="frow">
+            <div class="fg"><label>Person *</label><select id="f_per" class="finp" onchange="onAddPer()"><option value="">Select person...</option></select></div>
+            <div class="fg"><label>Site Code</label><input id="f_code" class="finp finp-ro" readonly></div>
+          </div>
+          <div class="frow">
+            <div class="fg"><label>Site Name</label><input id="f_site" class="finp finp-ro" readonly></div>
+            <div class="fg"><label>Vehicle</label><select id="f_veh" class="finp"><option value="">None</option></select></div>
+          </div>
+          <div class="frow">
+            <div class="fg"><label>Month *</label><select id="f_mon" class="finp"><option>January</option><option>February</option><option>March</option><option>April</option><option>May</option><option>June</option><option>July</option><option>August</option><option>September</option><option>October</option><option>November</option><option>December</option></select></div>
+            <div class="fg"><label>Year</label><input type="number" id="f_yr" class="finp" value="2026"></div>
+          </div>
+          <div class="fg"><label>Notes / Vehicles Used</label><input id="f_notes" class="finp" placeholder="e.g. LN-8238, multiple trips..."></div>
+        </div>
+        <div class="card fcard">
+          <div class="fsec">💰 Amounts & Initial Invoice</div>
+          <div class="frow">
+            <div class="fg"><label>Reimp. Amount *</label><input type="number" id="f_reimp" class="finp" placeholder="0.00" oninput="calcAmt()"></div>
+            <div class="fg"><label>VAT Bill (if already received)</label><input type="number" id="f_vat" class="finp" placeholder="0.00 — optional" oninput="calcAmt()"></div>
+          </div>
+          <div class="frow">
+            <div class="fg"><label>Invoice No (if available)</label><input id="f_in1" class="finp" placeholder="Leave blank if not yet received"></div>
+            <div class="fg"><label>Invoice Date</label><input type="date" id="f_id1" class="finp"></div>
+          </div>
+          <div class="calc-box">
+            <div class="cr"><span class="cl">Without VAT</span><span class="cv" id="cv_wo">—</span></div>
+            <div class="cr"><span class="cl">Tax Invoice (÷ 1.18)</span><span class="cv" id="cv_tx">—</span></div>
+            <div class="cr"><span class="cl">VAT Amount</span><span class="cv" id="cv_vt">—</span></div>
+            <div class="cr ctot"><span class="cl">Total</span><span class="cv cv-blue" id="cv_tot">—</span></div>
+            <div class="cr cbal" id="cbal" style="display:none;"><span class="cl">⚠ Balance Due</span><span class="cv cv-or" id="cv_bal">—</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ffoot"><button class="btn-gh" onclick="resetAddForm()">Clear</button><button class="btn-pri" onclick="saveNewRec()">💾 Save Record</button></div>
+      <div class="fmsg" id="fMsg"></div>
+    </div>
+
+    <!-- ═══ UPDATE INVOICE ═══ -->
+    <div class="pg" id="pg-invupdate">
+      <div class="phdr">
+        <div class="phdr-l">
+          <button class="bbtn" onclick="go('dash')"><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button>
+          <div><h2>Update Invoice</h2><p>Add invoice to pending / partial records</p></div>
+        </div>
+      </div>
+      <!-- Filters -->
+      <div class="fbar">
+        <div class="swrap"><svg class="sic" width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.3"/><line x1="9.5" y1="9.5" x2="12.5" y2="12.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><input id="iuSrch" class="sinp" placeholder="Search by name, site, code..." oninput="renderInvUpdate()"></div>
+        <div class="fw"><span class="fic">📅</span><select id="iuMon" class="fsel" onchange="renderInvUpdate()"><option value="">All Months</option></select></div>
+        <div class="fw"><span class="fic">🔖</span>
+          <select id="iuStat" class="fsel" onchange="renderInvUpdate()">
+            <option value="">Pending + Partial</option>
+            <option value="pending">⏳ Pending Only</option>
+            <option value="partial">⚠ Partial Only</option>
+          </select>
+        </div>
+        <div class="fw"><span class="fic">👤</span><select id="iuPer" class="fsel" onchange="renderInvUpdate()"><option value="">All Persons</option></select></div>
+      </div>
+      <div class="iu-stats" id="iuStats"></div>
+      <div id="iuCards" class="iu-cards"></div>
+    </div>
+
+    <!-- ═══ PERSONS ═══ -->
+    <div class="pg" id="pg-per">
+      <div class="phdr">
+        <div class="phdr-l"><button class="bbtn" onclick="go('dash')"><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button><div><h2>Persons</h2><p>Registered persons</p></div></div>
+        <button class="btn-pri" onclick="toggleEl('pFrm')">+ Add Person</button>
+      </div>
+      <div class="card" id="pFrm" style="display:none;margin-bottom:14px;">
+        <div class="fsec">New Person</div>
+        <div class="frow"><div class="fg"><label>Full Name *</label><input id="pn_nm" class="finp"></div><div class="fg"><label>Site Code *</label><input id="pn_code" class="finp" placeholder="09217"></div><div class="fg"><label>Default Site</label><input id="pn_site" class="finp"></div><div class="fg"><label>NIC/ID</label><input id="pn_nic" class="finp" placeholder="Optional"></div></div>
+        <div class="ffoot mt10"><button class="btn-gh" onclick="toggleEl('pFrm')">Cancel</button><button class="btn-pri" onclick="savePer()">Save</button></div>
+      </div>
+      <div class="card"><div class="twrap"><table><thead><tr><th>#</th><th>Name</th><th>Site Code</th><th>Default Site</th><th>NIC/ID</th><th>Records</th><th></th></tr></thead><tbody id="perTb"></tbody></table></div></div>
+    </div>
+
+    <!-- ═══ VEHICLES ═══ -->
+    <div class="pg" id="pg-veh">
+      <div class="phdr">
+        <div class="phdr-l"><button class="bbtn" onclick="go('dash')"><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</button><div><h2>Vehicles</h2><p>Vehicle registry</p></div></div>
+        <button class="btn-pri" onclick="openAddVeh()">+ Add Vehicle</button>
+      </div>
+      <div class="card" id="vFrm" style="display:none;margin-bottom:14px;">
+        <div class="fsec">New Vehicle</div>
+        <div class="frow"><div class="fg"><label>Vehicle No *</label><input id="vn_num" class="finp"></div><div class="fg"><label>Type</label><input id="vn_type" class="finp" placeholder="Car / Motorbike"></div><div class="fg"><label>Primary Owner</label><select id="vn_own" class="finp"></select></div><div class="fg"><label>Notes</label><input id="vn_note" class="finp"></div></div>
+        <div class="ffoot mt10"><button class="btn-gh" onclick="toggleEl('vFrm')">Cancel</button><button class="btn-pri" onclick="saveVeh()">Save</button></div>
+      </div>
+      <div class="card"><div class="twrap"><table><thead><tr><th>#</th><th>Vehicle No</th><th>Type</th><th>Primary Owner</th><th>Notes</th><th>Records</th><th></th></tr></thead><tbody id="vehTb"></tbody></table></div></div>
+    </div>
+
+  </main>
+</div>
+
+<!-- TOAST/NOTIFICATION (center page) -->
+<div class="notif-overlay" id="notifOverlay" style="display:none;" onclick="closeNotif(event)">
+  <div class="notif-box" id="notifBox">
+    <div class="notif-icon" id="notifIcon"></div>
+    <div class="notif-ttl" id="notifTtl"></div>
+    <div class="notif-msg" id="notifMsg"></div>
+    <button class="notif-ok" id="notifOk" onclick="closeNotif()">OK</button>
+  </div>
+</div>
+
+<!-- TOAST bottom right -->
+<div class="toast" id="toast"></div>
+
+<!-- DELETE PIN MODAL -->
+<div class="mbg" id="pinMod" style="display:none;">
+  <div class="modal modal-sm">
+    <div class="mod-hdr">
+      <div class="mod-ico mod-ico-rd">🔒</div>
+      <div><div class="mod-ttl">Confirm Delete</div><div class="mod-sub">Enter PIN to delete this record</div></div>
+    </div>
+    <div class="fg mb12"><label>PIN *</label><input type="password" id="pinInput" class="finp" placeholder="Enter PIN" maxlength="6" oninput="checkPin()"></div>
+    <div class="pin-dots" id="pinDots"></div>
+    <div class="pin-err" id="pinErr" style="display:none;">❌ Wrong PIN</div>
+    <div class="ffoot mt14"><button class="btn-gh" onclick="closePinMod()">Cancel</button></div>
+    <input type="hidden" id="pinRecId">
+  </div>
+</div>
+
+<!-- INVOICE UPDATE MODAL -->
+<div class="mbg" id="invMod" style="display:none;" onclick="closeInvMod(event)">
+  <div class="modal">
+    <div class="mod-hdr">
+      <div class="mod-ico">📋</div>
+      <div><div class="mod-ttl" id="modTtl">Update Invoice Details</div><div class="mod-sub" id="modSub"></div></div>
+    </div>
+    <div class="mod-info" id="modInfo"></div>
+    <div class="fg mb10"><label>Invoice Number *</label><input id="mi_num" class="finp"></div>
+    <div class="fg mb10"><label>Invoice Date</label><input type="date" id="mi_dt" class="finp"></div>
+    <div class="fg mb10"><label>VAT Bill Amount (this invoice)</label><input type="number" id="mi_vb" class="finp" placeholder="0.00" oninput="modCalc()"></div>
+    <div class="mod-calc" id="modCalc" style="display:none;"></div>
+    <div class="fg mb14">
+      <label>Mark status as</label>
+      <select id="mi_stat" class="finp">
+        <option value="received">✓ Complete — No more invoice expected</option>
+        <option value="partial">⚠ Partial — More invoice expected</option>
+      </select>
+    </div>
+    <div class="ffoot"><button class="btn-gh" onclick="document.getElementById('invMod').style.display='none'">Cancel</button><button class="btn-pri" onclick="saveMod()">✓ Save Invoice</button></div>
+    <input type="hidden" id="mi_id">
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
